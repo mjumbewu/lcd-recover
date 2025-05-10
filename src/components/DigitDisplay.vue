@@ -110,6 +110,15 @@ const brokenSegmentColor = computed(() => {
     --segment-weight: 10px;
 }
 
+@media (width < 60em) {
+    .digit {
+        width: 25px;
+        height: 50px;
+        margin: 5px;
+        --segment-weight: 5px;
+    }
+}
+
 .segment {
     display: block;
     position: absolute;

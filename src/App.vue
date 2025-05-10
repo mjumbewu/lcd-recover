@@ -51,6 +51,9 @@ const handleSegmentClick = () => {
             Enter the partial digits you see on the LCD:
             <input 
                 type="text" 
+                pattern="[0-9]*"
+                inputmode="numeric"
+                maxlength="6"
                 v-model="seen" 
                 placeholder="Enter seen digits"
                 @input="handleSeenChange"
