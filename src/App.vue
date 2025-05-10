@@ -3,7 +3,7 @@ import LcdDisplay from './components/LcdDisplay.vue';
 import { LCD, Digit } from './assets/lcd.mjs';
 import { computed, reactive, ref } from 'vue';
 
-const lcd = ref(new LCD([
+let lcd = ref(new LCD([
     reactive(new Digit([])),
     reactive(new Digit([2, 5])),
     reactive(new Digit([1, 4])),
@@ -13,10 +13,11 @@ const lcd = ref(new LCD([
 ]));
 
 let differentiate = ref(false);
+let tried = ref(new Set())
+let seen = ref('');
 
-const seen = '';
-const handleSeenChange = (newSeen) => {
-    lcd.value.iSee(newSeen);
+const handleSeenChange = () => {
+    lcd.value.iSee(seen.value);
     tried.value.clear();
 };
 
@@ -24,7 +25,6 @@ const alternatives = computed(() => {
     return lcd.value.alsoCouldBe();
 });
 
-const tried = ref(new Set())
 
 const handleAlternativeClick = (value) => {
     // Copy the value to the clipboard
@@ -53,7 +53,7 @@ const handleSegmentClick = () => {
                 type="text" 
                 v-model="seen" 
                 placeholder="Enter seen digits"
-                @input="handleSeenChange(seen)"
+                @input="handleSeenChange"
             />
         </label>
         
