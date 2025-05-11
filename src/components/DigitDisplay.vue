@@ -17,6 +17,16 @@ const props = defineProps({
   },
 });
 
+const segmentIndices = [
+  0, // top
+  1, // top-left
+  2, // top-right
+  3, // middle
+  4, // bottom-left
+  5, // bottom-right
+  6, // bottom
+];
+
 // Create a handler for when a digit segment is clicked
 const emit = defineEmits(['segmentClick']);
 const handleSegmentClick = (segmentIndex) => {
@@ -43,61 +53,16 @@ const brokenSegmentColor = computed(() => {
     <!-- Render the digit object -->
     <div class="digit">
         <span
-            class="segment segment-0"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(0),
-                'segment-on': digit.possibleShape.has(0),
+            v-for="segmentIndex in segmentIndices"
+            :key="segmentIndex"
+            :class="{
+                'segment': true,
+                [`segment-${segmentIndex}`]: true,
+                'segment-broken': digit.brokenSegments.has(segmentIndex),
+                'segment-on': digit.possibleShape.has(segmentIndex),
             }"
-            @click="handleSegmentClick(0)"
-        ></span><!-- top segment -->
-        <span
-            class="segment segment-1"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(1),
-                'segment-on': digit.possibleShape.has(1),
-            }"
-            @click="handleSegmentClick(1)"
-        ></span><!-- top-left segment -->
-        <span
-            class="segment segment-2"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(2),
-                'segment-on': digit.possibleShape.has(2),
-            }"
-            @click="handleSegmentClick(2)"
-        ></span><!-- top-right segment -->
-        <span
-            class="segment segment-3"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(3),
-                'segment-on': digit.possibleShape.has(3),
-            }"
-            @click="handleSegmentClick(3)"
-        ></span><!-- middle segment -->
-        <span
-            class="segment segment-4"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(4),
-                'segment-on': digit.possibleShape.has(4),
-            }"
-            @click="handleSegmentClick(4)"
-        ></span><!-- bottom-left segment -->
-        <span
-            class="segment segment-5"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(5),
-                'segment-on': digit.possibleShape.has(5),
-            }"
-            @click="handleSegmentClick(5)"
-        ></span><!-- bottom-right segment -->
-        <span
-            class="segment segment-6"
-            :class="{ 
-                'segment-broken': digit.brokenSegments.has(6),
-                'segment-on': digit.possibleShape.has(6),
-            }"
-            @click="handleSegmentClick(6)"
-        ></span><!-- bottom segment -->
+            @click="handleSegmentClick(segmentIndex)"
+        ></span>
     </div>
 </template>
 
