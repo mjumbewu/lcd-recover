@@ -34,7 +34,7 @@ const five = new Set([0, 1, 3, 5, 6]);
 const six = new Set([0, 1, 3, 4, 5, 6]);
 const seven = new Set([0, 2, 5]);
 const eight = new Set([0, 1, 2, 3, 4, 5, 6]);
-const nine = new Set([0, 1, 2, 3, 5]);
+const nine = new Set([0, 1, 2, 3, 5, 6]);
 
 const allShapes = [zero, one, two, three, four, five, six, seven, eight, nine];
 
