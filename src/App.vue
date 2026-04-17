@@ -5,11 +5,11 @@ import { computed, reactive, ref } from 'vue';
 
 let lcd = ref(new LCD([
     reactive(new Digit([])),
-    reactive(new Digit([2, 5])),
+    reactive(new Digit([0, 2, 3, 4, 5, 6])),
     reactive(new Digit([1, 4])),
     reactive(new Digit([0, 2, 5])),
     reactive(new Digit([0, 1, 4, 6])),
-    reactive(new Digit([])),
+    reactive(new Digit([6])),
 ]));
 
 let differentiate = ref(false);
